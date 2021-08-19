@@ -7,11 +7,14 @@ import java.util.Scanner;
 
 public class CapsuleHotel {
     public static void main(String[] args) {
+        //Nice I like how sparce your main method is here.
         int caps = startUp();
         displayMenu(caps);
     }
 
-
+    //Nice clean method...You get a little carried away with code comments though.
+    //When your code is well written it is self-documenting.
+    //You've done some really good work here, and the comments are a little redundant.
     public static int startUp() { // a method with initial text and for the user to set up how many capsules the hotel will have
         System.out.println("\nWelcome to the Super Capsule Hotel!");
         System.out.println("=".repeat(35));
@@ -65,10 +68,12 @@ public class CapsuleHotel {
                     break;
                 default:
             }
+            //very clean exit from the program loop.  I like it.
         } while (!ending);
     }
 
-
+    //I like that you choose to pass around `String[] capsules` from method to method instead of using a global (class) variable.
+    //This isn't always the best choice, but worked really well for this project.
     public static String[] displayCheckIn(String[] capsules, int caps) { // method to let user add guests names to capsules
         System.out.println("\nGuest Check In");
         System.out.println("=".repeat(14));
@@ -79,6 +84,8 @@ public class CapsuleHotel {
             System.out.print("Guest Name (type R to return to the menu): ");
             name = scannerHelper();
 
+            //Above comments aren't really necessary but this 'if' statement is a little mysterious.  
+            //From your code demo I really like what you did here, but this is actually the sort of thing we could use a comment on
             if (name.equals("R")) {
                 return capsules;
             }
@@ -142,7 +149,8 @@ public class CapsuleHotel {
         int hold = Integer.parseInt(room);
         System.out.println("\nCapsule: Guest");
 
-
+        //Try to avoid hard-coding numbers like this.
+        //You did a great job with the functionality of this code though.
         if ((hold < 6) && (hold > (caps - 5))) {
             viewHelper(capsules, hold, (6 - hold), (caps - hold));
         } else if (hold < 6) {
@@ -185,6 +193,8 @@ public class CapsuleHotel {
         do {
             System.out.printf("Capsule #[1-%d] (type R to return to menu): ", caps);
             room = scannerHelper();
+            
+            //I like this pattern a lot..maybe we could have pulled it out into another method
             if (room.equals("R")) {
                 return "R";
             }
@@ -197,7 +207,10 @@ public class CapsuleHotel {
         return room;
     }
 
-
+    //this method is a bit mysterious and requires me to dig in to it a bit...
+    //Try to avoid names like "hold" that aren't very descriptive.
+    //I'm not exactly sure conceptually what "viewHelper" is supposed to be doing just by looking at it
+    //I like being lazy :D
     public static void viewHelper(String[] capsules, int hold, int compare1, int compare2) { // method to properly display the nearby guests
         for (int i = ((hold - 6) + compare1); i < (hold + compare2); i++) {
             String replace;
@@ -215,4 +228,8 @@ public class CapsuleHotel {
         Scanner console = new Scanner(System.in);
         return console.next();
     }
+    
+    /*
+        Overall excellent work.  Critiques are mainly around style.  
+    */
 }
